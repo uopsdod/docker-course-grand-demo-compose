@@ -32,7 +32,7 @@ services:
     ports: 
       - "3000:3000"
     environment:
-      - REACT_APP_API_HOST_IP=192.168.99.100
+      - REACT_APP_API_HOST_IP=${API_HOST_IP}
 
 
 networks:
