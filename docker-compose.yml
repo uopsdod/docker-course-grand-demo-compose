@@ -25,6 +25,15 @@ services:
       - DB_HOST_IP=mydb
     networks:
       my-bridge-001:
+  react-web:
+    build:
+      context: ./web
+    image: uopsdod/react-web-01
+    ports: 
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_HOST_IP=192.168.99.100
+
 
 networks:
   my-bridge-001:
