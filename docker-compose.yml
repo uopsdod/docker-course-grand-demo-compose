@@ -8,10 +8,10 @@ services:
     ports: 
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_USER=demo_java
-      - MYSQL_PASSWORD=1234
-      - MYSQL_DATABASE=demo_db
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     networks:
       my-bridge-001:
   java-app:
