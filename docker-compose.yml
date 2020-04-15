@@ -4,7 +4,7 @@ services:
     build:
       context: ./db
     image: uopsdod/mysql-db-01
-    container_name: mysql-db
+    container_name: mydb
     ports: 
       - "3306:3306"
     environment:
@@ -14,22 +14,17 @@ services:
       - MYSQL_DATABASE=demo_db
     networks:
       my-bridge-001:
-        ipv4_address: 172.90.1.1
   java-app:
     build:
       context: ./app
     image: uopsdod/java-app-01
     ports:
       - "8080:8080"
-    command: ["./wait-for-it.sh", "172.90.0.1:3306", "--", "java", "-jar", "target/accessing-data-mysql-0.0.1-SNAPSHOT.jar"]
+    command: ./wait-for-it.sh mydb:3306 -- java -jar target/accessing-data-mysql-0.0.1-SNAPSHOT.jar 
     environment:
-      - DB_HOST_IP=mysql-db
+      - DB_HOST_IP=mydb
     networks:
       my-bridge-001:
-        ipv4_address: 172.90.1.2
 
 networks:
   my-bridge-001:
-    ipam:
-      config:
-        - subnet: 172.90.0.0/16
