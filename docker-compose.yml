@@ -33,6 +33,7 @@ services:
     build:
       context: ./web
     image: uopsdod/react-web-01
+    command: ./wait-for-it.sh ${API_HOST_IP}:8080 -- npm start
     ports: 
       - "3000:3000"
     environment:
