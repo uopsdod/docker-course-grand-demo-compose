@@ -1,10 +1,10 @@
 version: "3.7"
 services: 
   mysql-db:
+    container_name: mydb
     build:
       context: ./db
     image: uopsdod/mysql-db-01
-    container_name: mydb
     ports: 
       - "3306:3306"
     environment:
@@ -14,7 +14,10 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     networks:
       my-bridge-001:
+    volumes:
+      - db-data:/var/lib/mysql
   java-app:
+    container_name: myapp
     build:
       context: ./app
     image: uopsdod/java-app-01
@@ -26,6 +29,7 @@ services:
     networks:
       my-bridge-001:
   react-web:
+    container_name: myweb
     build:
       context: ./web
     image: uopsdod/react-web-01
@@ -37,3 +41,7 @@ services:
 
 networks:
   my-bridge-001:
+
+volumes:
+  db-data:
+
