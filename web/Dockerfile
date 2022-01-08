@@ -1,5 +1,5 @@
 # image build phase
-FROM node
+FROM node:16
 WORKDIR /myapp
 COPY package.json .
 RUN npm install
